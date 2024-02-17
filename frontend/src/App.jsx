@@ -25,3 +25,16 @@ function App() {
 }
 
 export default App
+// new repo
+// echo "# moazChatApp" >> README.md
+// git init
+// git add README.md
+// git commit -m "first commit"
+// git branch -M main
+// git remote add origin https://github.com/moazTello/moazChatApp.git
+// git push -u origin main
+
+// existance repo
+// git remote add origin https://github.com/moazTello/moazChatApp.git
+// git branch -M main
+// git push -u origin main
