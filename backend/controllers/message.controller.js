@@ -1,6 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
-
+import {getReceiverSocketId, io} from '../socket/socket.js'
 export const sendMessage = async (req,res) => {
     // console.log("message sent",req.params.user_id );
     try{
@@ -13,25 +13,33 @@ export const sendMessage = async (req,res) => {
         if(!conversation){
             conversation = await Conversation.create({
                 participants:[senderId,receiverId],
-            })
+            });
         }
         const newMessage = new Message({
             senderId:senderId,
             receiverId:receiverId,
             message:message
-        })
+        });
         if(newMessage){
-            conversation.messages.push(newMessage._id)
+            conversation.messages.push(newMessage._id);
         }
         // await conversation.save();
         // await newMessage.save();
         // this will run parallel
-        await Promise.all([newMessage.save(),conversation.save()])
-        res.status(201).json(newMessage)
+        await Promise.all([newMessage.save(),conversation.save()]);
+
+
+        // SOCKET Here
+        const receiverSocketId = getReceiverSocketId(receiverId); 
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit("newMessage",newMessage); //io.to() used to send a message to a specific client
+        }
+
+        res.status(201).json(newMessage);
     }
     catch(err){
         console.log(err);
-        res.status(500).json({"error":`error from message controller ${err}`})
+        res.status(500).json({"error":`error from message controller ${err}`});
     }
 }
 export const getMessages = async (req,res) => {

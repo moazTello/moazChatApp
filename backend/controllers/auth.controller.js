@@ -18,8 +18,8 @@ export const signup = async (req,res) => {
         const hashedPassword = await bcrypt.hash(password,salt)
 
         //https://avatart-placeholder.iran.liara.run/girl
-        const boyProfilePic = `https://avatart.iran.liara.run/boy?username=${userName}`;
-        const girlProfilePic = `https://avatart.iran.liara.run/girl?username=${userName}`;
+        const boyProfilePic = `https://pm1.aminoapps.com/6296/e053ef20357b79eb6ab406eae01c143fe194ca23_128.jpg`;
+        const girlProfilePic = `https://pm1.aminoapps.com/6296/e053ef20357b79eb6ab406eae01c143fe194ca23_128.jpg`;
 
         const newUser = new User({
             fullname:fullName,
@@ -81,6 +81,6 @@ export const logout = (req,res) => {
     }
     catch(err){
         console.log(err)
-        res.status(500).json({"message":"internal our server error "})
+        res.status(500).json({error:"internal our server error "})
     }
 }
