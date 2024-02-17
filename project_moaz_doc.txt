@@ -412,6 +412,45 @@ Git init in the root
 Move .gitignor from frontend to the root 
 Add .env to the .gitignore
 
+Cd fronend
+Terminal ->
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
 
+And replace tailwind.config.js to ->
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
 
+The add this to index.css
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+Then we will using daisy with tailwinds
+
+In frontend terminal
+npm i -D daisyui@latest
+And in tailwind.config.js 
+plugins: [require("daisyui")],
+So the tailwind.config.js will be 
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require("daisyui")],
+}
