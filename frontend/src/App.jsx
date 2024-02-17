@@ -34,6 +34,7 @@ export default App
 // git remote add origin https://github.com/moazTello/moazChatApp.git
 // git push -u origin main
 
+// when you make any changes just commit a new commit and run these lines
 // existance repo
 // git remote add origin https://github.com/moazTello/moazChatApp.git
 // git branch -M main
