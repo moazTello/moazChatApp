@@ -11,7 +11,10 @@ const useListenMessages = () => {
             const sound = new Audio(notificationSound);
             sound.play();
             console.log(newMessage);
-            if(newMessage.senderId === messages[0]?.senderId){
+            if(newMessage.senderId === messages[0]?.senderId && newMessage.receiverId === messages[0]?.receiverId){
+                setMessages([...messages,newMessage]);
+            }
+            else if(newMessage.receiverId === messages[0]?.senderId && newMessage.senderId === messages[0]?.receiverId){
                 setMessages([...messages,newMessage]);
             }
         });

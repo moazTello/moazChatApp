@@ -17,7 +17,6 @@ const Message = ({mess}) => {
             <div className='w-10 rounded-full'>
                 {/* <img src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' alt='user avatar'/> */}
                 <img src={profilePic} alt='user avatar'/>
-
             </div>
         </div>
         <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} max-w-[300px] `}>{mess.message}
