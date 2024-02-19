@@ -10,7 +10,10 @@ const useListenMessages = () => {
             newMessage.shouldShake = true;
             const sound = new Audio(notificationSound);
             sound.play();
-            setMessages([...messages,newMessage]);
+            console.log(newMessage);
+            if(newMessage.senderId === messages[0]?.senderId){
+                setMessages([...messages,newMessage]);
+            }
         });
         return () => socket?.off("newMessage");
     },[socket,setMessages,messages]);
