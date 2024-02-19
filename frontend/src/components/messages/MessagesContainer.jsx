@@ -20,13 +20,13 @@ const MessagesContainer = () => {
           <span className='label-text text-gray-500'>To : </span>
           <span className='text-gray-700 font-bold'>{selectedConversation?.fullname}</span>
           <button onClick={() => {setSideNum(false)}} className='absolute end-2 top-2 flex items-center pe-3'
-                  // style={{display:width<600 ? '' : 'none'}}
+                  style={{display:width<600 ? '' : 'none'}}
           >
             <FaArrowAltCircleLeft size={25} className='cursor-pointer text-gray-700'/>
           </button>
         </div>
         <Messages/>
-  </>,[]);
+  </>,[width,selectedConversation]);
   const messageInputComponent = useMemo(() => <MessageInput/>,[])
   return (
     <div className='md:min-w-[450px] flex flex-col' 

@@ -17,9 +17,9 @@ const LogoutButton = () => {
     },5000);
   };
   useEffect(() => {
-    audioRef.current.addEventListener('ended', handleAudioEnded);
+    audioRef?.current?.addEventListener('ended', handleAudioEnded);
     return () => {
-      audioRef.current.removeEventListener('ended', handleAudioEnded);
+      audioRef?.current?.removeEventListener('ended', handleAudioEnded);
     };
   }, []);
 
