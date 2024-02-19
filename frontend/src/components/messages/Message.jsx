@@ -20,7 +20,7 @@ const Message = ({mess}) => {
 
             </div>
         </div>
-        <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass}`}>{mess.message}
+        <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} max-w-[300px] `}>{mess.message}
         {/* <p className='chat-footer bg-transparent text-xs -mb-2'>{mess.createdAt}</p> */}
         </div>
         <div className='chat-footer rounded-md mt-1 opacity-80 text-xs flex gap-1 items-center bg-transparent text-white p-0.5'>{formatedTime}</div>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
+// import { useNavigate } from 'react-router-dom';
 
 const useGetConversations = () => {
+    // const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [ conversations, setConversations ] = useState([]);
     useEffect(() => {
@@ -16,7 +18,9 @@ const useGetConversations = () => {
                 setConversations(data)
             }
             catch(err){
-                toast.error(err.message);
+                toast.error('token expired relogin please',err.message);
+                // localStorage.removeItem('chat-user');
+                // navigate('/login');
             }
             finally{
                 setLoading(false);

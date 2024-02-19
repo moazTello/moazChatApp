@@ -29,7 +29,7 @@ const SearchInput = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
         />
-        <button type='submit' className='btn btn-circle bg-orange-300 text-white'>
+        <button type='submit' title='Search For a Conversation' className='btn btn-circle bg-orange-300 text-white'>
             <FaSearch size={20} className='outline-none'/>
         </button>
     </form>

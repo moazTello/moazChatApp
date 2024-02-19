@@ -8,7 +8,7 @@ export const getUserForSidebar = async (req,res) => {
     }
     catch(err){
         console.log(err);
-        res.status(500).json({error:"internal server error"});
+        res.status(500).json({error:"internal server error please try to login again"});
     }
 
 }
