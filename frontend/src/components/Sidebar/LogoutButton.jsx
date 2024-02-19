@@ -43,7 +43,7 @@ const LogoutButton = () => {
   return (
     <div className='mt-auto flex items-center'>
       {loading ? (<span className='loading loading-spinner mt-10'></span>) : (<BiLogOut className='w-8 h-8 text-white cursor-pointer mt-10' title='Logout' onClick={logout}/>)}
-      <button className='cursor-pointer mt-10'>
+      <button className='cursor-pointer mt-5'>
         <img className='w-7 ml-5' src='jhins.svg' alt='See Jhin Image for 5 seconds !' title='See Jhin Image for 5 seconds !' onClick={showJhin}/>
       </button>
       {/* <button onClick={palyNadam} className='cursor-pointer mt-10 ml-7'>
@@ -54,7 +54,7 @@ const LogoutButton = () => {
       </button> */}
       <button
         onClick={playNadam}
-        className="cursor-pointer mt-10 ml-7"
+        className="cursor-pointer mt-5 ml-7"
         disabled={isPlaying && isEnded}
         style={{display:isPlaying && !isEnded ?'none':''}}
         title='play Nadam music'
@@ -63,7 +63,7 @@ const LogoutButton = () => {
       </button>
       <button
         onClick={pauseNadam}
-        className="cursor-pointer mt-10 ml-7"
+        className="cursor-pointer mt-5 ml-7"
         disabled={!isPlaying || isEnded}
         style={{display:isPlaying && !isEnded ?'':'none'}}
         title='pause Nadam music'
