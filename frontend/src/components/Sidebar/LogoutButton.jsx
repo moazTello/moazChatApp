@@ -71,6 +71,16 @@ const LogoutButton = () => {
         <FaPause size={20} className="text-white" />
       </button>
       <audio ref={audioRef} src={nadam}></audio>
+      <div className='loader' style={{display:isPlaying && !isEnded ?'':'none'}}>
+        <span className='stroke'></span>
+        <span className='stroke'></span>
+        <span className='stroke'></span>
+        <span className='stroke'></span>
+        <span className='stroke'></span>
+        <span className='stroke'></span>
+        <span className='stroke'></span>
+        <span className='stroke'></span>
+      </div>
     </div>
   )
 }
