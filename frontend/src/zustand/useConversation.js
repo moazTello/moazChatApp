@@ -8,6 +8,8 @@ const useConversation = create((set) => ({
     setJhinImage:(jhinImage) => set({jhinImage}),
     sideNum:false,
     setSideNum:(sideNum) => set({sideNum}),
+    image:'',
+    setImage:(image) => set({image}),
 }));
 
 export default useConversation;
