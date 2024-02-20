@@ -71,7 +71,10 @@ export const setUserimage = async (req, res) => {
       console.log(image);
       const filePath = path.join(__dirname, 'images', image.filename);
       const user_id = req.user._id;
-      await User.findByIdAndUpdate(user_id, { profilePic:filePath });
+      // await User.findByIdAndUpdate(user_id, { profilePic:filePath });
+      await User.findByIdAndUpdate(user_id, { profilePic:`https://moaztello-chat-app.onrender.com/images/${image.filename}` });
+
+      // https://moaztello-chat-app.onrender.com/images/1708440737064.jpg
     //   fs.writeFile(filePath, imageFile.buffer, (err) => {
     //     if (err) {
     //         console.error(err);
