@@ -81,7 +81,7 @@ export const setUserimage = async (req, res) => {
     //         // res.status(200).json({ success: true, message: 'File saved successfully' });
     //     }
     //   });
-      res.status(200).json({ filename: image.filename,message:"image done!" });
+      res.status(200).json({ filename: image.filename,message:"image done!",path:filePath});
     } catch (err) {
       console.log(err);
       res.status(500).json({ error: "Internal server error. Please try uploading the image again." });
