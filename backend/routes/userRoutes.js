@@ -1,13 +1,13 @@
 import express from "express";
 import { getUserForSidebar
-    // , setUserimage 
+    , setUserimage 
 } from "../controllers/user.controller.js";
 import protectRoute from "../middleware/protectRoute.js";
-// import {upload} from '../middleware/multerMiddle.js'
+import upload from '../middleware/multerMiddle.js'
 const router = express.Router();
 
 router.get('/',protectRoute,getUserForSidebar);
-// router.post('/setImage',protectRoute,setUserimage);
+router.post('/setImage',protectRoute,upload.single("image"),setUserimage);
 // router.post('/setImage',protectRoute, upload.single('image'), (req, res) => {
 //     // Access the uploaded file using req.file
 //     const imageFile = req.file;

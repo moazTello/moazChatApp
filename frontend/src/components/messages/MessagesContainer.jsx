@@ -18,20 +18,35 @@ const MessagesContainer = () => {
   useEffect(()=>{
     return () => setSelectedConversation(null)
   },[setSelectedConversation]);
-  const handleImage = (e) => {
+  // const upLoadImage = async (imageLoeded) => {
+  //   console.log(image);
+  //   await loadingImage(imageLoeded);
+  // }
+  const handleImage = async (e) => {
     if(e.target.files.length !== 0){
-        const reader = new FileReader();
-        reader.onload = () => {
-            setImage(reader.result);
-            upLoadImage(reader.result);
-        }
-        reader.readAsDataURL(e.target.files[0]);
+      const file = e.target.files[0];
+      console.log(file);
+      setImage(URL.createObjectURL(file));
+
+      await loadingImage(file);
+      // setImage(e.target.files[0]);
+
+      // await loadingImage(e.target.files[0]);
+
+      // upLoadImage(e.target.files[0]);
+
+
+
+        // base64
+        // const reader = new FileReader();
+        // reader.onload = async () => {
+        //     setImage(reader.result);
+        //     await loadingImage(reader.result);
+        // }
+        // reader.readAsDataURL(e.target.files[0]);
     }
   }
-  const upLoadImage = async (imageLoeded) => {
-    console.log(image);
-    await loadingImage(imageLoeded);
-  }
+  
   const messagesComponent = useMemo(() => <>
         <div className='bg-orange-300 px-4 py-2 mb-2 min-h-[65px] flex items-center relative'>
           <span className='label-text text-gray-500'>To : </span>
@@ -39,7 +54,7 @@ const MessagesContainer = () => {
           <label className='w-12 absolute end-1 top-2' htmlFor='choose'>
             <img className='rounded-full w-12 cursor-pointer' src={image?image:authUser.profilePic} alt='userPic' />
           </label>
-          <input onChange={handleImage} style={{display:'none'}} type='file' id='choose'/>
+          <input onChange={handleImage} style={{display:'none'}} name='image' accept='.jpg, .jpeg, .png' type='file' id='choose'/>
           <button onClick={() => {setSideNum(false)}} className='absolute end-12 top-5 flex items-center pe-3'
                   style={{display:width<600 ? '' : 'none'}}
           >

@@ -10,38 +10,38 @@ import messageRoutes from './routes/messageRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import {app, server} from './socket/socket.js';
 import connectToMongoDB from "./db/connectToMongoDb.js";
-import multer from 'multer';
-import protectRoute from "./middleware/protectRoute.js";
+// import multer from 'multer';
+// import protectRoute from "./middleware/protectRoute.js";
 
 // const app = express();  //moved to socket
 const PORT = process.env.PORT || 9000;
 
 //for deploy changes
-const __dirname = path.resolve()
+const __dirname = path.resolve();
 
 dotenv.config();
 app.use(express.json());  
 app.use(cookieParser());
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, 'images'));
-    },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-      cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-    }
-});
-const upload = multer({ storage: storage });
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.join(__dirname, 'images'));
+//     },
+//     filename: function (req, file, cb) {
+//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+//       cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+//     }
+// });
+// const upload = multer({ storage: storage });
 
-app.post('api/users/setImage',protectRoute, upload.single('image'), (req, res) => {
-    // Access the uploaded file using req.file
-    const imageFile = req.file;
+// app.post('api/users/setImage',protectRoute, upload.single('image'), (req, res) => {
+//     // Access the uploaded file using req.file
+//     const imageFile = req.file;
   
-    // Process and save the file as needed
+//     // Process and save the file as needed
   
-    res.status(200).json({ success: true });
-  });
+//     res.status(200).json({ success: true });
+//   });
 
 app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
