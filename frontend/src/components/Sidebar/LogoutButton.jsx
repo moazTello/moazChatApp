@@ -80,6 +80,7 @@ const LogoutButton = () => {
         <span className='stroke'></span>
         <span className='stroke'></span>
         <span className='stroke'></span>
+        <span className='stroke'></span>
       </div>
     </div>
   )
