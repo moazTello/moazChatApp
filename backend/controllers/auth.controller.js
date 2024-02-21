@@ -26,7 +26,8 @@ export const signup = async (req,res) => {
             username:userName,
             password:hashedPassword,
             gender:gender,
-            profilePic:gender === 'male' ? boyProfilePic : girlProfilePic
+            profilePic:gender === 'male' ? boyProfilePic : girlProfilePic,
+            lastSeen:Date.now()
         });
         if(newUser){
             generateTokenAndSetCookie(newUser._id,res)
@@ -35,7 +36,8 @@ export const signup = async (req,res) => {
             _id:newUser._id,
             fullname:newUser.fullname,
             username:newUser.username,
-            profilePic:newUser.profilePic
+            profilePic:newUser.profilePic,
+            lastSeen:newUser.lastSeen
             });
         }
         else{
@@ -65,7 +67,8 @@ export const login = async (req,res) => {
             _id:user._id,
             fullname:user.fullname,
             username:user.username,
-            profilePic:user.profilePic
+            profilePic:user.profilePic,
+            lastSeen:user.lastSeen
         });
     }
     catch(err){
