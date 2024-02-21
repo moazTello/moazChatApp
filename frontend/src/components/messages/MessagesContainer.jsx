@@ -1,68 +1,113 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import {TiMessages } from 'react-icons/ti';
 import useConversation from '../../zustand/useConversation';
 import { useAuthContext } from '../../context/AuthContext';
 import useWindowSize from '../../hooks/useWindowSize';
-import { FaArrowAltCircleLeft } from "react-icons/fa";
-import { useUplaodImage } from '../../hooks/useUploadImage';
+import { FaArrowAltCircleLeft, FaCloudUploadAlt } from "react-icons/fa";
+import { useUplaodImage, useUploadImageFromUrl } from '../../hooks/useUploadImage';
 const MessagesContainer = () => {
   const {width} = useWindowSize();
-  const  {loading,loadingImage} = useUplaodImage();
+  const {loadingImage} = useUplaodImage();
+  const {LoadImageFromUrl} = useUploadImageFromUrl();
   // const {messages, setMessages} = useConversation();
   const {selectedConversation, setSelectedConversation
     , sideNum,setSideNum,image,setImage
+    // ,imageUrl,setImageUrl
   } = useConversation();
   const {authUser} = useAuthContext();
   useEffect(()=>{
     return () => setSelectedConversation(null)
   },[setSelectedConversation]);
-  // const upLoadImage = async (imageLoeded) => {
-  //   console.log(image);
-  //   await loadingImage(imageLoeded);
-  // }
   const handleImage = async (e) => {
     if(e.target.files.length !== 0){
       const file = e.target.files[0];
       console.log(file);
       setImage(URL.createObjectURL(file));
-
       await loadingImage(file);
-      // setImage(e.target.files[0]);
-
-      // await loadingImage(e.target.files[0]);
-
-      // upLoadImage(e.target.files[0]);
-
-
-
-        // base64
-        // const reader = new FileReader();
-        // reader.onload = async () => {
-        //     setImage(reader.result);
-        //     await loadingImage(reader.result);
-        // }
-        // reader.readAsDataURL(e.target.files[0]);
     }
   }
-  
-  const messagesComponent = useMemo(() => <>
-        <div className='bg-orange-300 px-4 py-2 mb-2 min-h-[65px] flex items-center relative'>
-          <span className='label-text text-gray-500'>To : </span>
-          <span className='text-gray-700 font-bold'>{selectedConversation?.fullname}</span>
-          <label className='w-12 absolute end-1 top-2' htmlFor='choose'>
-            <img className='rounded-full w-12 cursor-pointer' src={image?image:authUser.profilePic} alt='userPic' />
-          </label>
-          <input onChange={handleImage} style={{display:'none'}} name='image' accept='.jpg, .jpeg, .png' type='file' id='choose'/>
-          <button onClick={() => {setSideNum(false)}} className='absolute end-12 top-5 flex items-center pe-3'
-                  style={{display:width<600 ? '' : 'none'}}
-          >
-            <FaArrowAltCircleLeft size={25} className='cursor-pointer text-gray-700'/>
-          </button>
+  // const handleImageUrl = async (e) => {
+  //   e.preventDefault();
+  //   if(imageUrl.length > 0){
+  //     LoadImageFromUrl(imageUrl);
+  //     setImageUrl('');
+  //   }
+  // }
+  const ImageInputComponent1 = () => {
+    const [imageUrl, setImageUrl] = useState('');
+    const handleImageUrl = async (e) => {
+      e.preventDefault();
+      if (imageUrl.length > 0) {
+        LoadImageFromUrl(imageUrl);
+        setImageUrl('');
+        setImage(imageUrl);
+      }
+    };
+    return (
+      <form onSubmit={handleImageUrl}>
+        <input value={imageUrl} onChange={(e) => {setImageUrl(e.target.value)}} type='text' placeholder='free image source' className='w-[100%] cursor-pointer outline-none bg-transparent'/>
+        <button type='submit'><FaCloudUploadAlt size={25}/></button>
+      </form>
+    );
+  };
+  const ImageInputComponent = useMemo(() => <ImageInputComponent1 />, []);
+  // const imageInputContainer = useMemo(()=>
+  //   <form onSubmit={handleImageUrl}>
+  //     <input value={imageUrl} onChange={(e) => {setImageUrl(e.target.value)}} type='text' placeholder='free image source' className='w-[100%] cursor-pointer outline-none bg-transparent'/>
+  //     <button type='submit'><FaCloudUploadAlt size={25}/></button>
+  //   </form>
+  // ,[imageUrl,setImageUrl,handleImageUrl]);
+  const headerMessagesComponent = useMemo(()=> <>
+    <div className='bg-orange-300 px-4 py-2 mb-2 min-h-[65px] flex items-center relative'>
+      <span className='label-text text-gray-500'>To : </span>
+      <span className='text-gray-700 font-bold'>{selectedConversation?.fullname}</span>
+      <div className="dropdown dropdown-end w-12 h-12 absolute end-1 top-2">
+        <div tabIndex="0" role="button" className="m-1">
+          <img className='rounded-full w-12 h-10 cursor-pointer' src={image?image:authUser.profilePic} alt='userPic' />
         </div>
-        <Messages/>
-  </>,[width,selectedConversation,image]);
+        <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li>
+          <button className="btn outline-none" onClick={()=>document.getElementById('my_modal_1').showModal()}>See Image</button>
+          <dialog id="my_modal_1" className="modal --tw-translate-y-[90px]">
+            <div className="modal-box self-center">
+              <img className='w-full' src={image?image:authUser.profilePic} alt='userPic' />
+              <p className="py-4">Press ESC key or click the button below to close</p>
+              <div className="modal-action">
+                <form method="dialog">
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+          </li>
+          <li>
+            <label className='' htmlFor='choose'>
+              UpLoad Image Not supported yet cause of server
+            </label>
+          </li>
+          <li>
+            {ImageInputComponent}
+            {/* <form onSubmit={handleImageUrl}>
+              <input value={imageUrl} onChange={(e) => {setImageUrl(e.target.value)}} type='text' placeholder='free image source' className='w-[100%] cursor-pointer outline-none bg-transparent'/>
+              <button type='submit'><FaCloudUploadAlt size={25}/></button>
+            </form> */}
+          </li>
+        </ul>
+      </div>
+      {/* <label className='w-12 absolute end-1 top-2' htmlFor='choose'>
+        <img className='rounded-full w-12 cursor-pointer' src={image?image:authUser.profilePic} alt='userPic' />
+      </label> */}
+      <input onChange={handleImage} style={{display:'none'}} name='image' accept='.jpg, .jpeg, .png' type='file' id='choose'/>
+      <button onClick={() => {setSideNum(false)}} className='absolute end-12 top-5 flex items-center pe-3'
+              style={{display:width<600 ? '' : 'none'}}
+      >
+        <FaArrowAltCircleLeft size={25} className='cursor-pointer text-gray-700'/>
+      </button>
+    </div>
+  </>,[width,selectedConversation,image,setSideNum,sideNum,handleImage]);
+  const messagesComponent = useMemo(() =><Messages/>,[]);
   const messageInputComponent = useMemo(() => <MessageInput/>,[])
   return (
     <div className='md:min-w-[450px] flex flex-col' 
@@ -81,6 +126,7 @@ const MessagesContainer = () => {
                 </div>
                 <Messages/> */}
                 {/* <MessageInput/> */}
+                {headerMessagesComponent}
                 {messagesComponent}
                 {messageInputComponent}
             </>

@@ -15,7 +15,7 @@ const Messages = () => {
   },[messages])
   console.log(messages);
   return (
-    <div className='px-4 flex-1 overflow-auto min-w-[300px] max-h-[500px]'>
+    <div className='px-4 flex-1 overflow-auto min-w-[300px] max-h-[500px] min-h-[300px]'>
       {!loading && messages.length > 0 && messages.map((mess) => (<div key={mess._id} ref={lastMessageRef}><Message mess={mess}/></div>))}
       {loading && [...Array(3)].map((_, idx) => <MessageSkeliton key={idx}/>)}
       {!loading && messages.length === 0 && (<p className='text-center'>Send a Message to start the conversation</p>)}

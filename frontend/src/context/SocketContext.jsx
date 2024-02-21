@@ -15,7 +15,6 @@ export const SocketContextProvider = ({ children}) => {
         if(authUser){
             // const socket = io("http://localhost:9000",{ //if we are localy 
             const socket = io("https://moaztello-chat-app.onrender.com",{
-
                 query:{
                     userId:authUser._id
                 }

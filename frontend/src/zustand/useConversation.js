@@ -10,6 +10,8 @@ const useConversation = create((set) => ({
     setSideNum:(sideNum) => set({sideNum}),
     image:'',
     setImage:(image) => set({image}),
+    imageUrl:'',
+    setImageUrl:(imageUrl) => set({imageUrl}),
 }));
 
 export default useConversation;
