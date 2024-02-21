@@ -62,7 +62,7 @@ const MessagesContainer = () => {
   const headerMessagesComponent = useMemo(()=> <>
     <div className='bg-orange-300 px-4 py-2 mb-2 min-h-[65px] flex items-center relative'>
       <span className='label-text text-gray-500'>To : </span>
-      <span className='text-gray-700 font-bold'>{selectedConversation?.fullname}</span>
+      <span className='text-gray-700 font-bold'> {selectedConversation?.fullname}</span>
       <div className="dropdown dropdown-end w-12 h-12 absolute end-1 top-2">
         <div tabIndex="0" role="button" className="m-1">
           <img className='rounded-full w-12 h-10 cursor-pointer' src={image?image:authUser.profilePic} alt='userPic' />
