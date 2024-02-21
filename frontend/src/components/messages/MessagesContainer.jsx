@@ -69,7 +69,7 @@ const MessagesContainer = () => {
         </div>
         <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
           <li>
-          <button className="btn outline-none" onClick={()=>document.getElementById('my_modal_1').showModal()}>See Image</button>
+          <button className="btn outline-none bg-gray-700" onClick={()=>document.getElementById('my_modal_1').showModal()}>See Image</button>
           <dialog id="my_modal_1" className="modal --tw-translate-y-[90px]">
             <div className="modal-box self-center">
               <img className='w-full' src={image?image:authUser.profilePic} alt='userPic' />
@@ -106,7 +106,7 @@ const MessagesContainer = () => {
         <FaArrowAltCircleLeft size={25} className='cursor-pointer text-gray-700'/>
       </button>
     </div>
-  </>,[width,selectedConversation,image,setSideNum,sideNum,handleImage]);
+  </>,[width,selectedConversation,image,setSideNum,handleImage]);
   const messagesComponent = useMemo(() =><Messages/>,[]);
   const messageInputComponent = useMemo(() => <MessageInput/>,[])
   return (

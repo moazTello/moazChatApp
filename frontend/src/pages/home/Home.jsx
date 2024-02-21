@@ -8,7 +8,7 @@ import { CiMail } from "react-icons/ci";
 // import useWindowSize from '../../hooks/useWindowSize';
 const Home = () => {
   // const {width} = useWindowSize();
-  const {jhinImage} = useConversation();
+  const {jhinImage,sideNum} = useConversation();
   const sidebarComponent = useMemo(() => <Sidebar/> ,[]);
   const messageContainerComponent = useMemo(() => <MessagesContainer/> ,[]);
   return (
