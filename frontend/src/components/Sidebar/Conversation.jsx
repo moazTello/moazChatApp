@@ -2,7 +2,7 @@ import useConversation from '../../zustand/useConversation'
 import { useSocketContext } from '../../context/SocketContext';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useState } from 'react';
-
+import { extractTime } from '../../utils/ExtractTime';
 const Conversation = ({conv, emoji, lastIdx}) => {
     const {selectedConversation, setSelectedConversation
         ,setSideNum
@@ -12,6 +12,7 @@ const Conversation = ({conv, emoji, lastIdx}) => {
     const {onlineUsers} = useSocketContext();
     const isOnline = onlineUsers.includes(conv._id);
     const {width} = useWindowSize();
+    const formatedTime = extractTime(conv.lastSeen);
     const setconvreference = () => {
         if(selectedConversation?._id !== conv._id)setSelectedConversation(conv);
     }
@@ -61,7 +62,7 @@ const Conversation = ({conv, emoji, lastIdx}) => {
                     <p className='font-bold text-gray-200'>{conv.fullname}</p>
                     <span className='text-xl'>{emoji}</span>
                 </div>
-
+                <div className='text-xs end-2 bottom-0'>{!isOnline && formatedTime}{isOnline && <>online</>}</div>
             </div>
         </div>
         {!lastIdx && <div className={`divider h-1 py-0 my-0`}/>}
