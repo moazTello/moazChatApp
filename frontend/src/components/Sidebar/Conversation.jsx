@@ -3,7 +3,7 @@ import { useSocketContext } from '../../context/SocketContext';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useState } from 'react';
 import { extractTime } from '../../utils/ExtractTime';
-const Conversation = ({conv, emoji, lastIdx}) => {
+const Conversation = ({conv, lastIdx}) => {
     const {selectedConversation, setSelectedConversation
         ,setSideNum
     } = useConversation();
@@ -60,7 +60,7 @@ const Conversation = ({conv, emoji, lastIdx}) => {
             <div className='flex flex-col flex-1'>
                 <div className='flex justify-between gap-3'>
                     <p className='font-bold text-gray-200'>{conv.fullname}</p>
-                    <span className='text-xl'>{emoji}</span>
+                    {/* <span className='text-xl'>{emoji}</span> */}
                 </div>
                 <div className='text-xs end-2 bottom-0'>{!isOnline && formatedTime}{isOnline && <>online</>}</div>
             </div>
