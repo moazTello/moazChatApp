@@ -26,7 +26,7 @@ io.on('connection',(socket)=>{
     const userId = socket.handshake.query.userId;
     if(userId != "undefined") userSocketMap[userId] = socket.id;
     io.emit("getOnlineUsers",Object.keys(userSocketMap));
-    socket.on('disconnect',async()=>{
+    socket.on('disconnect',async ()=>{
         await User.findByIdAndUpdate(userId, { lastSeen:Date.now() });
         console.log('user disconnected ',socket.id);
         console.log(`${userId} last seen ${Date.now()}`,socket.id);

@@ -11,6 +11,7 @@ const useListenMessages = () => {
             const sound = new Audio(notificationSound);
             sound.play();
             console.log(newMessage);
+            setMessages([...messages,newMessage]);
             if(newMessage.senderId === messages[0]?.senderId && newMessage.receiverId === messages[0]?.receiverId){
                 console.log("sender = sender");
                 setMessages([...messages,newMessage]);
@@ -23,5 +24,4 @@ const useListenMessages = () => {
         return () => socket?.off("newMessage");
     },[socket,setMessages,messages]);
 }
-
 export default useListenMessages

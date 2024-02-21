@@ -23,26 +23,6 @@ dotenv.config();
 app.use(express.json());  
 app.use(cookieParser());
 
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, path.join(__dirname, 'images'));
-//     },
-//     filename: function (req, file, cb) {
-//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-//       cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-//     }
-// });
-// const upload = multer({ storage: storage });
-
-// app.post('api/users/setImage',protectRoute, upload.single('image'), (req, res) => {
-//     // Access the uploaded file using req.file
-//     const imageFile = req.file;
-  
-//     // Process and save the file as needed
-  
-//     res.status(200).json({ success: true });
-//   });
-
 app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
 app.use("/api/users",userRoutes);
@@ -50,8 +30,8 @@ app.use("/api/users",userRoutes);
 
 
 //for deploy changes
-// app.use(express.static(path.join(__dirname,"frontend/dist")));
-app.use(express.static(path.resolve(__dirname, 'frontend/dist')));
+app.use(express.static(path.join(__dirname,"frontend/dist")));
+// app.use(express.static(path.resolve(__dirname, 'frontend/dist')));
 app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,"frontend","dist","index.html"))
 })

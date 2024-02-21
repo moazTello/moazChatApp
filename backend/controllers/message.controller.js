@@ -34,7 +34,7 @@ export const sendMessage = async (req,res) => {
         if(receiverSocketId){
             io.to(receiverSocketId).emit("newMessage",newMessage); //io.to() used to send a message to a specific client
         }
-
+        console.log("newMessage",newMessage);
         res.status(201).json(newMessage);
     }
     catch(err){
