@@ -4,13 +4,13 @@ import Conversations from './Conversations'
 import LogoutButton from './LogoutButton'
 import useWindowSize from '../../hooks/useWindowSize'
 import useConversation from '../../zustand/useConversation';
-import AdComponent from '../googleAd/GoogleAd';
+// import AdComponent from '../googleAd/GoogleAd';
 const Sidebar = () => {
   const {sideNum} = useConversation();
   const {width} = useWindowSize();
   const searchInputComponent = useMemo(() => <>
     <SearchInput/> 
-    <AdComponent/>
+    {/* <AdComponent/> */}
     <div className='divider px-3'></div>
   </>
   , []);
