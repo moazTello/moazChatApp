@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body{
-  /* background: linear-gradient(rgba(169, 106, 18, 0.2),rgba(219, 57, 57, 0.2)),url("/jhin.jpg"); */
+  background: linear-gradient(rgba(169, 106, 18, 0.3),rgba(219, 57, 57, 0.3)),url("/jhin.jpg");
   /* background: url("/frontend/public/jhin.jpg"); */
-  background: linear-gradient(rgba(7, 101, 35, 0.2),rgba(57, 152, 219, 0.2)),url("/background.png");
+  /* background: linear-gradient(rgba(177, 152, 117, 0.1),rgba(220, 187, 151, 0.1)),url("/jhin.jpg"); */
   /* background: linear-gradient(rgba(169, 106, 18, 0.2),rgba(219, 57, 57, 0.2)),url("/background2.jpeg"); */
 
   background-repeat: no-repeat;
