@@ -7,6 +7,8 @@ import { useAuthContext } from '../../context/AuthContext';
 import useWindowSize from '../../hooks/useWindowSize';
 import { FaArrowAltCircleLeft, FaCloudUploadAlt } from "react-icons/fa";
 import { useUplaodImage, useUploadImageFromUrl } from '../../hooks/useUploadImage';
+import female from '/girl.png';
+import male from '/person.png';
 const MessagesContainer = () => {
   const {width} = useWindowSize();
   const {loadingImage} = useUplaodImage();
@@ -65,14 +67,14 @@ const MessagesContainer = () => {
       <span className='text-gray-700 font-bold'> {selectedConversation?.fullname}</span>
       <div className="dropdown dropdown-end w-12 h-12 absolute end-1 top-2">
         <div tabIndex="0" role="button" className="m-1">
-          <img className='rounded-full w-12 h-10 cursor-pointer' src={image?image:authUser.profilePic} alt='userPic' />
+          <img className='rounded-full w-12 h-10 cursor-pointer' src={image?image:authUser.profilePic === '' ? authUser.gender === 'male' ? male : female : authUser.profilePic} alt='userPic' />
         </div>
         <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
           <li>
           <button className="btn outline-none bg-gray-700" onClick={()=>document.getElementById('my_modal_1').showModal()}>See Image</button>
           <dialog id="my_modal_1" className="modal --tw-translate-y-[90px]">
             <div className="modal-box self-center">
-              <img className='w-full' src={image?image:authUser.profilePic} alt='userPic' />
+              <img className='w-full' src={image?image:authUser.profilePic === '' ? authUser.gender === 'male' ? male : female : authUser.profilePic} alt='userPic' />
               <p className="py-4">Press ESC key or click the button below to close</p>
               <div className="modal-action">
                 <form method="dialog">

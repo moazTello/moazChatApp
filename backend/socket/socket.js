@@ -13,13 +13,17 @@ const io = new Server(server,{
     },
 });
 
-export const getReceiverSocketId = (receiverId) => {
-    return userSocketMap[receiverId]
-}
-
 const userSocketMap = {
 
 } //{userId:socketId}
+
+export const getReceiverSocketId = (receiverId) => {
+    console.log("receiverId : ",receiverId)
+    console.log("userSocketMap[receiverId] : ",userSocketMap[receiverId])
+    return userSocketMap[receiverId]
+}
+
+
 
 io.on('connection',(socket)=>{
     console.log('user connected ',socket.id);

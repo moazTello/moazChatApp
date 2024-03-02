@@ -2,6 +2,8 @@ import React from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import useConversation from '../../zustand/useConversation';
 import { extractTime } from '../../utils/ExtractTime';
+import female from '/girl.png';
+import male from '/person.png';
 const Message = ({mess}) => {
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
@@ -16,10 +18,10 @@ const Message = ({mess}) => {
         <div className='chat-image avatar'>
             <div className='w-10 rounded-full'>
                 {/* <img src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' alt='user avatar'/> */}
-                <img src={profilePic} alt='user avatar'/>
+                <img src={profilePic === '' ? fromMe ? authUser.gender === 'male' ? male : female : selectedConversation.gender === 'male' ? male :female : profilePic} alt='user avatar'/>
             </div>
         </div>
-        <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} max-w-[300px] `}>{mess.message}
+        <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} xs:max-w-[200px] sm:max-w-[300px] overflow-auto scrollbar-hide`}>{mess.message}
         {/* <p className='chat-footer bg-transparent text-xs -mb-2'>{mess.createdAt}</p> */}
         </div>
         <div className='chat-footer rounded-md mt-1 opacity-80 text-xs flex gap-1 items-center bg-transparent text-white p-0.5'>{formatedTime}</div>

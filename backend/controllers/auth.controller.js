@@ -15,18 +15,19 @@ export const signup = async (req,res) => {
         // HASH PASSWORD HERE
 
         const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password,salt)
+        const hashedPassword = await bcrypt.hash(password,salt);
 
         //https://avatart-placeholder.iran.liara.run/girl
-        const boyProfilePic = `https://pm1.aminoapps.com/6296/e053ef20357b79eb6ab406eae01c143fe194ca23_128.jpg`;
-        const girlProfilePic = `https://pm1.aminoapps.com/6296/e053ef20357b79eb6ab406eae01c143fe194ca23_128.jpg`;
+        // const boyProfilePic = `https://pm1.aminoapps.com/6296/e053ef20357b79eb6ab406eae01c143fe194ca23_128.jpg`;
+        // const girlProfilePic = `https://pm1.aminoapps.com/6296/e053ef20357b79eb6ab406eae01c143fe194ca23_128.jpg`;
 
         const newUser = new User({
             fullname:fullName,
             username:userName,
             password:hashedPassword,
             gender:gender,
-            profilePic:gender === 'male' ? boyProfilePic : girlProfilePic,
+            // profilePic:gender === 'male' ? boyProfilePic : girlProfilePic,
+            profilePic:'',
             lastSeen:Date.now()
         });
         if(newUser){
@@ -37,7 +38,8 @@ export const signup = async (req,res) => {
             fullname:newUser.fullname,
             username:newUser.username,
             profilePic:newUser.profilePic,
-            lastSeen:newUser.lastSeen
+            lastSeen:newUser.lastSeen,
+            gender:gender
             });
         }
         else{
@@ -68,7 +70,8 @@ export const login = async (req,res) => {
             fullname:user.fullname,
             username:user.username,
             profilePic:user.profilePic,
-            lastSeen:user.lastSeen
+            lastSeen:user.lastSeen,
+            gender:user.gender
         });
     }
     catch(err){

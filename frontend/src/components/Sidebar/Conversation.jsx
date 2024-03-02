@@ -3,6 +3,9 @@ import { useSocketContext } from '../../context/SocketContext';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useState } from 'react';
 import { extractTime } from '../../utils/ExtractTime';
+import female from '/girl.png';
+import male from '/person.png';
+
 const Conversation = ({conv, lastIdx}) => {
     const {selectedConversation, setSelectedConversation
         ,setSideNum
@@ -37,7 +40,10 @@ const Conversation = ({conv, lastIdx}) => {
             <div className={`avatar ${isOnline?'online':'offline'}`}>
                 <div className='w-12 rounded-full' onClick = {showImageProfile}>
                     {/* <img src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg' alt='user avatar'/> */}
-                    <img src={conv.profilePic} alt='user avatar'/>
+                    {/* <img src={conv.profilePic} alt='user avatar'/> */}
+                    {conv.profilePic !== '' && <img src={conv.profilePic} alt='user avatar'/>}
+                    {conv.profilePic === '' && conv.gender === 'male' && <img src={male} alt='user avatar'/>}
+                    {conv.profilePic === '' && conv.gender === 'female' && <img src={female} alt='user avatar'/>}
                     {/* <button className="" onClick={()=>document.getElementById('my_modal_1').showModal()}>
                         <img src={conv.profilePic} alt='user avatar'/>
                     </button>
@@ -55,7 +61,9 @@ const Conversation = ({conv, lastIdx}) => {
                 </div>
             </div>
             <div className={`pt-10 z-20 w-36 absolute right-0`} style={{display:imageProfile ? '' : 'none'}}>
-                    <img src={conv.profilePic} alt='user avatar'/>
+                {conv.profilePic !== '' && <img src={conv.profilePic} alt='user avatar'/>}
+                {conv.profilePic === '' && conv.gender === 'male' && <img src={male} alt='user avatar'/>}
+                {conv.profilePic === '' && conv.gender === 'female' && <img src={female} alt='user avatar'/>}
             </div>
             <div className='flex flex-col flex-1'>
                 <div className='flex justify-between gap-3'>

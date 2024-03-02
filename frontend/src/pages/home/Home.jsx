@@ -27,10 +27,10 @@ const Home = () => {
         <img src={JhinGif} alt='jhin'/>
         {/* <iframe title='0' width="100%" src={JhinMovie} frameborder="0" allowfullscreen webkitallowfullscreen></iframe>  */}
       </div>
-      <div className='flex w-full h-10 justify-center text-gray-200 font-semibold items-center rounded-lg overflow-hidden bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0' 
+      {/* <div className='flex w-full h-10 justify-center text-gray-200 font-semibold items-center rounded-lg overflow-hidden bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0' 
       >
         <CiMail size={25} className='mr-3' color="white"/>  tello.m.m.t.95@gmail.com
-      </div>
+      </div> */}
     </div>
   )
 }

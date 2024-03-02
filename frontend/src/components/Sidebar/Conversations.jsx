@@ -7,7 +7,7 @@ const Conversations = () => {
   const {loading, conversations} = useGetConversations();
   console.log(conversations);
   return (
-    <div className='flex flex-col py-2 overflow-auto'>
+    <div className='flex flex-col py-2 overflow-auto xs:max-h-[355px]'>
       {conversations.length > 0 && conversations?.map((conv,idx)=>(<Conversation key={conv._id} conv={conv} lastIdx={idx === conversations.length - 1}/>))}
       {loading ? <span className='loading loading-infinity w-20 h-10 ms-auto'></span> : null}
     </div>
